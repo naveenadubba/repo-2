@@ -16,13 +16,19 @@ then
 fi
 fi
 done
+if [ $x -gt $n ]
+then
+	echo " Guess is low please increase the value"
+else
+	echo "Guess is high please decrease your guess value "
+fi
 if [ $n == $x ]
 then
 	echo " Your guess is correct "
 	echo " Congratulations "
 	break
 else
-	clear 
+ 
 	echo  -e "Your guess is wrong please try again \n "
 	
 fi
