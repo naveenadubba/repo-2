@@ -1,35 +1,47 @@
-#!/bin/bash
-#echo -n " Enter the guess value that how many files under this directory :"
+#!/usr/bin/env bash
 
-while true
+# File: guessinggame.sh
+
+
+
+function get_num_of_files {
+
+	echo $(ls -1 | wc -l)
+
+}
+
+
+
+answer=$(get_num_of_files)
+
+printf 'How many files are in the current directory? What do you think? \n'
+
+read guess
+
+while [[ $guess -ne $answer ]]
+
 do
-	echo -n " Please guess the number of files in the current directory :"
-read n
-x=0
-for i in *;
-do
-if [ ! -x $i ]
-then
-if [ -f $i ]
-then
-	x=`expr $x + 1`
-fi
-fi
+
+	printf 'Your guess is too '
+
+	if [[ $guess -gt $answer ]]
+
+	then
+
+		printf 'high'
+
+	else printf 'low'
+
+	fi
+
+	echo '. Try again'
+
+read guess
+
 done
-if [ $x -gt $n ]
-then
-	echo " Guess is low please increase the value"
-else
-	echo "Guess is high please decrease your guess value "
-fi
-if [ $n == $x ]
-then
-	echo " Your guess is correct "
-	echo " Congratulations "
-	break
-else
- 
-	echo  -e "Your guess is wrong please try again \n "
-	
-fi
-done
+
+
+
+echo "Congratulations! Your guess is correct. The number of files in the current directory is $answer."
+
+echo "Thank you for playing!"
